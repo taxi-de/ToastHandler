@@ -36,9 +36,11 @@ class ToastCompat(context: Context, private val toast: Toast) : Toast(context) {
         toast.setText(s)
     }
 
-    override fun setView(view: View) {
+    override fun setView(view: View?) {
         toast.view = view
-        setContextCompat(view, ToastContextWrapper(view.context))
+        if (view != null) {
+            setContextCompat(view, ToastContextWrapper(view.context))
+        }
     }
 
     override fun getHorizontalMargin(): Float {
@@ -65,12 +67,12 @@ class ToastCompat(context: Context, private val toast: Toast) : Toast(context) {
         return toast.yOffset
     }
 
-    override fun getView(): View {
+    override fun getView(): View? {
         return toast.view
     }
 
-    private fun setContextCompat(view: View, context: Context) {
-        if (Build.VERSION.SDK_INT == 25) {
+    private fun setContextCompat(view: View?, context: Context) {
+        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.N_MR1 && view != null) {
             try {
                 val field = View::class.java.getDeclaredField("mContext")
                 field.isAccessible = true
