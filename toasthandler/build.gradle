@@ -2,26 +2,10 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'maven-publish'
-apply plugin: 'com.novoda.bintray-release'
 
-publish {
-
-    def groupProjectID = 'com.toastfix'
-    def artifactProjectID = 'toastcompatwrapper'
-    def publishVersionID = '1.2.0'
-
-    userOrg = '{userName}'
-    repoName = '{repoName}'
-    groupId = groupProjectID
-    artifactId = artifactProjectID
-    publishVersion = publishVersionID
-    desc = 'An Android library for handling Toast BadTokenException happenning on Android API level 25 and showing Toast smoothly on All Android versions'
-    website = '{github-url}'
-
-}
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
     buildToolsVersion "29.0.3"
 
     defaultConfig {
