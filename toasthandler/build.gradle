@@ -3,10 +3,24 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'maven-publish'
 
+publishing {
+    publications {
+        maven(MavenPublication) {
+            def groupProjectID = 'com.toastfix'
+            def artifactProjectID = 'toastcompatwrapper'
+            def publishVersionID = '1.2.0'
+
+            groupId = groupProjectID
+            artifactId = artifactProjectID
+            version = publishVersionID
+
+        }
+    }
+}
 
 android {
     compileSdkVersion 31
-    buildToolsVersion "29.0.3"
+    buildToolsVersion "30.0.2"
 
     defaultConfig {
         minSdkVersion 16
@@ -38,4 +52,6 @@ dependencies {
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    lintPublish project(path: ':toasthandler-lint')
 }
